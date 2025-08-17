@@ -5,9 +5,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-group 'br.com.popgas.flutter_sms_listener'
-version '1.0-SNAPSHOT'
-
 repositories {
     google()
     mavenCentral()
