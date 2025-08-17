@@ -1,46 +1,48 @@
 group 'br.com.popgas.flutter_sms_listener'
 version '1.0-SNAPSHOT'
 
-buildscript {
-    ext.kotlin_version = '1.7.10'
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
-rootProject.allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+repositories {
+    google()
+    mavenCentral()
 }
-
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
+    namespace 'br.com.popgas.flutter_sms_listener'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-    defaultConfig {
-        minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    // Flutter 3.22+ uses Java 17 on Android
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-    lintOptions {
-        disable 'InvalidPackage'
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    lint {
+        disable += ['InvalidPackage']
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-    implementation 'com.google.android.gms:play-services-auth-api-phone:17.3.0'
+    // Kotlin stdlib (optional with Kotlin plugin, but explicit is fine)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    // SMS Retriever API (official current versions from docs)
+    implementation 'com.google.android.gms:play-services-auth:21.4.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:18.2.0'
 }

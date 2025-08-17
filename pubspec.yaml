@@ -1,11 +1,11 @@
 name: flutter_sms_listener
-description: A new flutter plugin project.
+description: Flutter plugin to listen for incoming SMS on Android.
 version: 1.0.0
-homepage:
+homepage: https://github.com/popgas-admin/flutter_sms_listener
 
 environment:
-  sdk: '>=3.0.1 <4.0.0'
-  flutter: ">=1.12.0"
+  sdk: ">=3.2.0 <4.0.0"
+  flutter: ">=3.16.0"
 
 dependencies:
   flutter:
@@ -14,6 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^4.0.0
 
 flutter:
   plugin:
