@@ -131,4 +131,14 @@ class FlutterSmsListenerPlugin : FlutterPlugin, MethodCallHandler {
         else -> {
           Log.w(TAG, "Unhandled status: ${status.statusCode}")
           pendingResult?.error("UNKNOWN_STATUS", "Unhandled status: ${status.statusCode}", null)
-          pendin
+          pendingResult = null
+          unregister(context)
+        }
+      }
+    }
+  }
+
+  companion object {
+    private const val TAG = "FlutterSmsListener"
+  }
+}
